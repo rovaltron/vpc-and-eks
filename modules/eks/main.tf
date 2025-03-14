@@ -69,9 +69,19 @@ resource "aws_launch_template" "main" {
   description = "Launch template for EKS managed node group"
 
   user_data = base64encode(<<-EOF
-    #!/bin/bash
-    /etc/eks/bootstrap.sh ${aws_eks_cluster.main.name}
-  EOF
+Content-Type: multipart/mixed; boundary="==BOUNDARY=="
+
+--==BOUNDARY==
+Content-Type: text/x-shellscript; charset="us-ascii"
+
+#!/bin/bash
+set -ex
+/etc/eks/bootstrap.sh ${aws_eks_cluster.main.name} \
+  --b64-cluster-ca ${aws_eks_cluster.main.certificate_authority[0].data} \
+  --apiserver-endpoint ${aws_eks_cluster.main.endpoint}
+
+--==BOUNDARY==--
+EOF
   )
 
   tag_specifications {

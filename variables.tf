@@ -1,6 +1,19 @@
-variable "cluster_name" {
-  description = "Name of the EKS cluster"
+variable "aws_region" {
+  description = "AWS region for all resources"
   type        = string
+  default     = "us-west-2"
+}
+
+variable "vpc_cidr" {
+  description = "The CIDR block for the VPC"
+  type        = string
+  default     = "10.100.0.0/16"
+}
+
+variable "vpc_name" {
+  description = "Name tag for the VPC and related resources"
+  type        = string
+  default     = "main"
 }
 
 variable "environment" {
@@ -9,19 +22,10 @@ variable "environment" {
   default     = "development"
 }
 
-variable "vpc_id" {
-  description = "ID of the VPC where the EKS cluster will be created"
-  type        = string
-}
-
-variable "subnet_ids" {
-  description = "List of private subnet IDs for the EKS cluster and node groups"
+variable "availability_zones" {
+  description = "List of availability zones for subnet creation"
   type        = list(string)
-
-  validation {
-    condition     = length(var.subnet_ids) >= 2
-    error_message = "At least 2 private subnets must be specified for high availability."
-  }
+  default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
 variable "kubernetes_version" {
@@ -34,11 +38,6 @@ variable "instance_types" {
   description = "List of instance types for the EKS node group"
   type        = list(string)
   default     = ["t2.micro"]
-
-  validation {
-    condition     = length(var.instance_types) > 0
-    error_message = "At least one instance type must be specified."
-  }
 }
 
 variable "node_group_desired_size" {
@@ -63,9 +62,4 @@ variable "max_unavailable_percentage" {
   description = "Maximum percentage of nodes that can be unavailable during updates"
   type        = number
   default     = 33
-
-  validation {
-    condition     = var.max_unavailable_percentage > 0 && var.max_unavailable_percentage <= 100
-    error_message = "max_unavailable_percentage must be between 1 and 100."
-  }
 }

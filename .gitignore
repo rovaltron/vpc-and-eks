@@ -1,0 +1,99 @@
+# AWS CDK generated files
+cdk.out/
+cdk.context.json
+cdk.out/
+
+# Node.js dependencies and builds
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE files
+.idea/
+.vscode/
+*.code-workspace
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+*.tfvars
+
+# Sensitive or secrets files
+*.pem
+*.key
+.env
+.env.*
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Build outputs
+dist/
+build/
+
+# Misc
+coverage/
+.envrc
+credentials.json
+*.backup
+*.bak
+
+# Generated files
+*.zip
+*.tar
+*.tar.gz
+*.jar
+*.war
+*.ear
+
+# AWS SAM
+.aws-sam/
+
+# Local environment files
+.env
+.env.*
+
+# Python specific
+__pycache__/
+*.egg-info/
+*.pyc
+venv/
+.env
+
+# Miscellaneous
+coverage/
+dist/
+build/
+*/__pycache__/*
+*.log
+.cache/
+
+# Sensitive files
+private_key.pem
+id_rsa
+*.pem
+*.key
+
+# Mac system files
+.DS_Store
+Thumbs.db
+
+# Log files
+logs/
+*.log
+
+# Debug output
+*.out
+coverage/
+dist/
