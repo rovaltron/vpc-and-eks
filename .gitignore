@@ -20,6 +20,7 @@ yarn-error.log*
 .terraform/
 terraform.tfvars
 *.tfvars
+tfplan
 
 # Sensitive or secrets files
 *.pem
